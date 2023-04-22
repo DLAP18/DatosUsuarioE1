@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">DatosUsuarioE1</string>
+    <string name="ingrese_datos">Ingrese los datos\nsolicitados</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="correo">example@example.com</string>
+    <string name="nocuenta">123456789</string>
+    <string-array name="carreras">
+        <item>Selecciona una carrera...</item>
+        <item>Ingeniería Aeroespacial</item>
+        <item>Ingeniería Civil</item>
+        <item>Ingeniería Geomática</item>
+        <item>Ingeniería Ambiental</item>
+        <item>Ingeniería Geofísica</item>
+        <item>Ingeniería Geológica</item>
+        <item>Ingeniería Petrolera</item>
+        <item>Ingeniería de Minas y Metalurgia</item>
+        <item>Ingeniería en Computación</item>
+        <item>Ingeniería Eléctrica Electrónica</item>
+        <item>Ingeniería en Telecomunicaciones</item>
+        <item>Ingeniería Mecánica</item>
+        <item>Ingeniería Industrial</item>
+        <item>Ingeniería Mecatrónica</item>
+        <item>Ingeniería en Sistemas Biomédicos</item>
+    </string-array>
 </resources>
