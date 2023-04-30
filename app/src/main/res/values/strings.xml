@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">DatosUsuarioE1</string>
-    <string name="ingrese_datos">Ingrese los datos\nsolicitados</string>
+    <string name="ingrese_datos">Ingrese los datos</string>
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>
     <string name="correo">example@example.com</string>
     <string name="nocuenta">123456789</string>
+    <string name="continuar">Continuar</string>
+    <string name="tvNombre">Nombre(s)</string>
+    <string name="tvApellidos">Apellidos</string>
+    <string name="fechaNacimiento">Fecha de Nacimiento</string>
+    <string name="tvCorreoE">Correo Electrónico</string>
+    <string name="tvNoCuentas">Número de Cuenta</string>
     <string-array name="carreras">
         <item>Selecciona una carrera...</item>
         <item>Ingeniería Aeroespacial</item>
