@@ -1,6 +1,7 @@
 package com.example.datosusuarioe1
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -36,7 +37,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clickBoton(view: View){
-        if (binding.scarreras.selectedItemPosition == 0){
+        val intent = Intent(this, MainActivity2::class.java)
+
+        val bundle = Bundle()
+
+        val persona = Persona("Juana", "Banana", "10/03/22", "lala@hotmail.com", 123456789, "Computación")
+        bundle.putParcelable("persona", persona)
+
+        intent.putExtras(bundle)
+
+        startActivity(intent)
+
+        /*if (binding.scarreras.selectedItemPosition == 0){
             Toast.makeText(this,
             "Por favor, seleccione una opción",
             Toast.LENGTH_SHORT).show()
@@ -44,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,
             "La opción seleccionada es el número ${binding.scarreras.selectedItemPosition}",
             Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 
     private fun isValidEmail(mail: CharSequence) =
