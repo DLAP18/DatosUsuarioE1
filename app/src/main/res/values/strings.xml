@@ -11,6 +11,8 @@
     <string name="fechaNacimiento">Fecha de Nacimiento</string>
     <string name="tvCorreoE">Correo Electrónico</string>
     <string name="tvNoCuentas">Número de Cuenta</string>
+    <string name="version">Versión 1.0</string>
+    <string name="elCreador">Diana Arreguin</string>
     <string-array name="carreras">
         <item>Selecciona una carrera...</item>
         <item>Ingeniería Aeroespacial</item>

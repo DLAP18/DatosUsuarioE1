@@ -15,6 +15,7 @@ import com.example.datosusuarioe1.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    var persona = Persona(null, null, null, null, 0, null)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,11 +39,36 @@ class MainActivity : AppCompatActivity() {
 
     fun clickBoton(view: View){
         val intent = Intent(this, MainActivity2::class.java)
-
         val bundle = Bundle()
 
-        val persona = Persona("Juana", "Banana", "10/03/22", "lala@hotmail.com", 123456789, "Computación")
-        bundle.putParcelable("persona", persona)
+        val nombre = binding.etNombre.text.toString()
+        val apellidos = binding.etApellidos.text.toString()
+        val correo = binding.etEmail.text.toString()
+        val noCuenta = binding.etNumerocuenta.text.toString().toInt()
+        val carrera = binding.scarreras.selectedItem.toString()
+
+        //binding.etFechaNacimiento.text.isNotEmpty()
+        if(binding.etNombre.text.isNotEmpty()){
+            if(validarNombre(nombre)){
+                if(binding.etApellidos.text.isNotEmpty()){
+                    if(validarNombre(apellidos)){
+                        if(binding.etEmail.text.isNotEmpty()){
+                            if(isValidEmail(correo)){
+                                if(binding.etNumerocuenta.text.isNotEmpty()){
+                                    if(validarNoCuenta(noCuenta)){
+                                        if(binding.scarreras.selectedItemPosition != 0){
+                                            persona = Persona(nombre, apellidos, "10/03/1987", correo, noCuenta, carrera)
+                                            bundle.putParcelable("persona", persona)
+                                            //Toast.makeText(this, "La carrera es: ${persona.carrera}", Toast.LENGTH_LONG).show()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         intent.putExtras(bundle)
 
@@ -59,6 +85,18 @@ class MainActivity : AppCompatActivity() {
         }*/
     }
 
+    fun validarNombre(nombre: String): Boolean{
+        val re = Regex("[A-Za-z ]*")
+        return nombre.matches(re)
+    }
     private fun isValidEmail(mail: CharSequence) =
         (!TextUtils.isEmpty(mail) && Patterns.EMAIL_ADDRESS.matcher(mail).matches())
+
+    fun validarNoCuenta(noCuenta: Int): Boolean{
+        val nCuenta = noCuenta.toString()
+        if(nCuenta.length != 9){
+            return false
+        }
+        return true
+    }
 }
