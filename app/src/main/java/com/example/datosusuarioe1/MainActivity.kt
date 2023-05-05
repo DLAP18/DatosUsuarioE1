@@ -9,13 +9,14 @@ import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Toast
 import com.example.datosusuarioe1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    var persona = Persona(null, null, null, null, 0, null)
+    var persona = Persona(null, null, null, null, null, null)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -44,59 +45,84 @@ class MainActivity : AppCompatActivity() {
         val nombre = binding.etNombre.text.toString()
         val apellidos = binding.etApellidos.text.toString()
         val correo = binding.etEmail.text.toString()
-        val noCuenta = binding.etNumerocuenta.text.toString().toInt()
+        val noCuenta = binding.etNumerocuenta.text.toString()
         val carrera = binding.scarreras.selectedItem.toString()
 
+        persona = Persona(nombre, apellidos, "10/03/1987", correo, noCuenta, carrera)
+        bundle.putParcelable("persona", persona)
+
         //binding.etFechaNacimiento.text.isNotEmpty()
-        if(binding.etNombre.text.isNotEmpty()){
-            if(validarNombre(nombre)){
-                if(binding.etApellidos.text.isNotEmpty()){
-                    if(validarNombre(apellidos)){
-                        if(binding.etEmail.text.isNotEmpty()){
-                            if(isValidEmail(correo)){
-                                if(binding.etNumerocuenta.text.isNotEmpty()){
-                                    if(validarNoCuenta(noCuenta)){
-                                        if(binding.scarreras.selectedItemPosition != 0){
-                                            persona = Persona(nombre, apellidos, "10/03/1987", correo, noCuenta, carrera)
-                                            bundle.putParcelable("persona", persona)
-                                            //Toast.makeText(this, "La carrera es: ${persona.carrera}", Toast.LENGTH_LONG).show()
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+
+        if(validarCampos()){
+            intent.putExtras(bundle)
+            startActivity(intent)
         }
-
-        intent.putExtras(bundle)
-
-        startActivity(intent)
-
-        /*if (binding.scarreras.selectedItemPosition == 0){
-            Toast.makeText(this,
-            "Por favor, seleccione una opción",
-            Toast.LENGTH_SHORT).show()
-        } else{
-            Toast.makeText(this,
-            "La opción seleccionada es el número ${binding.scarreras.selectedItemPosition}",
-            Toast.LENGTH_SHORT).show()
-        }*/
     }
 
     fun validarNombre(nombre: String): Boolean{
         val re = Regex("[A-Za-z ]*")
         return nombre.matches(re)
     }
+
     private fun isValidEmail(mail: CharSequence) =
         (!TextUtils.isEmpty(mail) && Patterns.EMAIL_ADDRESS.matcher(mail).matches())
 
-    fun validarNoCuenta(noCuenta: Int): Boolean{
-        val nCuenta = noCuenta.toString()
-        if(nCuenta.length != 9){
+    fun validarNoCuenta(noCuenta: String): Boolean{
+        if(noCuenta.length != 9){
             return false
         }
         return true
+    }
+
+    //Función que válida los campos vacíos
+    fun validarCampos(): Boolean{
+        var esValido = true
+
+        if(binding.etNombre.text.isEmpty()){
+            binding.etNombre.error = resources.getString(R.string.valorRequerido)
+            esValido = false
+        }else if(!validarNombre(binding.etNombre.text.toString())){
+            binding.etNombre.error = resources.getString(R.string.informacionNoValida)
+            esValido = false
+        }else{
+            binding.etNombre.error = null
+        }
+
+        if(binding.etApellidos.text.isEmpty()) {
+            binding.etApellidos.error = resources.getString(R.string.valorRequerido)
+            esValido = false
+        }else if(!validarNombre(binding.etApellidos.text.toString())){
+            binding.etApellidos.error = resources.getString(R.string.informacionNoValida)
+            esValido = false
+        }else{
+            binding.etApellidos.error = null
+        }
+
+        if(binding.etEmail.text.isEmpty()) {
+            binding.etEmail.error = resources.getString(R.string.valorRequerido)
+            esValido = false
+        }else if(!isValidEmail(binding.etEmail.text.toString())){
+            binding.etEmail.error = resources.getString(R.string.informacionNoValida)
+            esValido = false
+        }else{
+            binding.etEmail.error = null
+        }
+
+        if(binding.etNumerocuenta.text.isEmpty()) {
+            binding.etNumerocuenta.error = resources.getString(R.string.valorRequerido)
+            esValido = false
+        }else if(!validarNoCuenta(binding.etNumerocuenta.text.toString())){
+            binding.etNumerocuenta.error = resources.getString(R.string.informacionNoValida)
+            esValido = false
+        }else{
+            binding.etNumerocuenta.error = null
+        }
+
+        if(binding.scarreras.selectedItemPosition == 0) {
+            Toast.makeText(this, R.string.seleccionaOpcion, Toast.LENGTH_SHORT).show()
+            esValido = false
+        }
+
+        return esValido
     }
 }
