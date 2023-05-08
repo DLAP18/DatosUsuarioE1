@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         binding.imgCalendario.setOnClickListener{showDatePickerDialog()}
     }
 
+    override fun onBackPressed() {}
+
     fun clickBoton(view: View){
         val intent = Intent(this, MainActivity2::class.java)
         val bundle = Bundle()

@@ -3,8 +3,8 @@
     <string name="ingrese_datos">Ingrese los datos</string>
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>
-    <string name="correo">example@example.com</string>
-    <string name="nocuenta">123456789</string>
+    <string name="correo">ejemplo@ejemplo.com</string>
+    <string name="nocuenta" translatable="false">123456789</string>
     <string name="continuar">Continuar</string>
     <string name="tvNombre">Nombre(s)</string>
     <string name="tvApellidos">Apellidos</string>
@@ -12,21 +12,45 @@
     <string name="tvCorreoE">Correo Electrónico</string>
     <string name="tvNoCuentas">Número de Cuenta</string>
     <string name="version">Versión 1.0</string>
-    <string name="elCreador">Diana Arreguin</string>
+    <string name="elCreador" translatable="false">Diana Arreguin</string>
     <string name="seleccionaOpcion">Por favor, seleccione una carrera</string>
     <string name="valorRequerido">Información requerida</string>
     <string name="informacionNoValida">Información inválida</string>
-    <string name="nombreCompleto">%s %s</string>
+    <string name="nombreCompleto" translatable="false">%s %s</string>
     <string name="edad">Edad</string>
     <string name="signoZ">Signo\nZodiacal</string>
     <string name="horoscopoC">Horóscopo\nChino</string>
     <string name="correoEP">Correo\nElectrónico</string>
     <string name="noCuentaP">Número de\nCuenta</string>
-    <string name="Hecho">Hecho</string>
-    <string name="fechaN">%s/%s/%d</string>
-    <string name="diaC">0%s</string>
-    <string name="mesC">0%s</string>
+    <string name="Regreso">Regresar</string>
+    <string name="fechaN" translatable="false">%s/%s/%d</string>
+    <string name="diaC" translatable="false">0%s</string>
+    <string name="mesC" translatable="false">0%s</string>
     <string name="edadR">%s años</string>
+    <string name="hcRata">Rata</string>
+    <string name="hcBuey">Buey</string>
+    <string name="hcTigre">Tigre</string>
+    <string name="hcConejo">Conejo</string>
+    <string name="hcDragon">Dragón</string>
+    <string name="hcSerpiente">Serpiente</string>
+    <string name="hcCaballo">Caballo</string>
+    <string name="hcCabra">Cabra</string>
+    <string name="hcMono">Mono</string>
+    <string name="hcGallo">Gallo</string>
+    <string name="hcPerro">Perro</string>
+    <string name="hcJabali">Jabalí</string>
+    <string name="szAries">Aries</string>
+    <string name="szTauro">Tauro</string>
+    <string name="szGeminis">Géminis</string>
+    <string name="szCancer">Cáncer</string>
+    <string name="szLeo">Leo</string>
+    <string name="szVirgo">Virgo</string>
+    <string name="szLibra">Libra</string>
+    <string name="szEscorpio">Escorpio</string>
+    <string name="szSagitario">Sagitario</string>
+    <string name="szCapricornio">Capricornio</string>
+    <string name="szAcuario">Acuario</string>
+    <string name="szPiscis">Piscis</string>
     <string-array name="carreras">
         <item>Selecciona una carrera...</item>
         <item>Ingeniería Aeroespacial</item>
