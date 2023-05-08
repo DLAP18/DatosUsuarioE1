@@ -1,6 +1,7 @@
 package com.example.datosusuarioe1
 
 import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
                 //parent: AdapterView
             //)
         //}
+
+        //Despliega el date picker dando clic en la imagen del calendario o en el edit text
+        binding.etFechaNacimiento.setOnClickListener{showDatePickerDialog()}
+        binding.imgCalendario.setOnClickListener{showDatePickerDialog()}
     }
 
     fun clickBoton(view: View){
@@ -44,14 +49,13 @@ class MainActivity : AppCompatActivity() {
 
         val nombre = binding.etNombre.text.toString()
         val apellidos = binding.etApellidos.text.toString()
+        val fechaN = binding.etFechaNacimiento.text.toString()
         val correo = binding.etEmail.text.toString()
         val noCuenta = binding.etNumerocuenta.text.toString()
         val carrera = binding.scarreras.selectedItem.toString()
 
-        persona = Persona(nombre, apellidos, "10/03/1987", correo, noCuenta, carrera)
+        persona = Persona(nombre, apellidos, fechaN, correo, noCuenta, carrera)
         bundle.putParcelable("persona", persona)
-
-        //binding.etFechaNacimiento.text.isNotEmpty()
 
         if(validarCampos()){
             intent.putExtras(bundle)
@@ -72,6 +76,27 @@ class MainActivity : AppCompatActivity() {
             return false
         }
         return true
+    }
+
+    private fun showDatePickerDialog(){
+        val datePicker = DatePickerFragment {day, month, year -> onDateSelected(day, month, year)}
+        datePicker.show(supportFragmentManager, "datePicker")
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int){
+        val dayC = resources.getString(R.string.diaC, day.toString())
+        val monthC = month + 1
+        val monthCo = resources.getString(R.string.mesC, monthC.toString())
+
+        if(day <= 9 && monthC <= 9){
+            binding.etFechaNacimiento.setText(resources.getString(R.string.fechaN, dayC, monthCo, year))
+        }else if(monthC <= 9){
+            binding.etFechaNacimiento.setText(resources.getString(R.string.fechaN, day.toString(), monthCo, year))
+        }else if(day <= 9){
+            binding.etFechaNacimiento.setText(resources.getString(R.string.fechaN, dayC, monthC.toString(), year))
+        }else{
+            binding.etFechaNacimiento.setText(resources.getString(R.string.fechaN, day.toString(), monthC.toString(), year))
+        }
     }
 
     //Función que válida los campos vacíos
@@ -96,6 +121,13 @@ class MainActivity : AppCompatActivity() {
             esValido = false
         }else{
             binding.etApellidos.error = null
+        }
+
+        if(binding.etFechaNacimiento.text.isEmpty()) {
+            binding.etFechaNacimiento.error = resources.getString(R.string.valorRequerido)
+            esValido = false
+        }else{
+            binding.etFechaNacimiento.error = null
         }
 
         if(binding.etEmail.text.isEmpty()) {

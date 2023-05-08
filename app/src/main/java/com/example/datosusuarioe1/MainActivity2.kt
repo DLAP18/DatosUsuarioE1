@@ -3,8 +3,8 @@ package com.example.datosusuarioe1
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.datosusuarioe1.databinding.ActivityMain2Binding
+import java.util.Calendar
 
 class MainActivity2 : AppCompatActivity() {
 
@@ -27,15 +27,50 @@ class MainActivity2 : AppCompatActivity() {
             }
 
             if(persona!=null){
-                //Toast.makeText(this, "El nombre del objeto parcelable es: ${persona.nombre}, y su cuenta es: ${persona.apellidos}", Toast.LENGTH_LONG).show()
                 binding.tvCarrera.text = persona.carrera
                 binding.tvNombreCompleto.text = resources.getString(R.string.nombreCompleto, persona.nombre, persona.apellidos)
-                binding.tvEdad.text = persona.fechaNacimiento
+                binding.tvEdad.text = resources.getString(R.string.edadR, edad(persona.fechaNacimiento.toString()))
                 binding.tvSignoZodiacal.text = persona.fechaNacimiento
                 binding.tvHoroscopoChino.text = persona.fechaNacimiento
                 binding.tvCorreoValido.text = persona.correoE
                 binding.tvNumeroCuenta.text = persona.noCuenta
             }
         }
+    }
+
+    fun edad(fechaN: String): String{
+        val day = fechaN.subSequence(0,2)
+        val month = fechaN.subSequence(3,5)
+        val year = fechaN.subSequence(fechaN.length-4,fechaN.length)
+
+        val dayN = day.toString().toInt()
+        val monthN = month.toString().toInt()
+        val yearN = year.toString().toInt()
+
+        val fechaActual = obtenerFecha()
+        var edad = 0
+
+        if(monthN > fechaActual[1]) {
+            edad = fechaActual[2] - yearN - 1
+        }else{
+            if(dayN < fechaActual[0] && monthN == fechaActual[1]) {
+                edad = fechaActual[2] - yearN - 1
+            }else if(dayN > fechaActual[0] && monthN == fechaActual[1]){
+                edad = fechaActual[2] - yearN - 1
+            }else{
+                edad = fechaActual[2] - yearN
+            }
+        }
+
+        return edad.toString()
+    }
+
+    fun obtenerFecha(): Array<Int> {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH) + 1
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        //val date = c.time
+        return arrayOf(day, month, year)
     }
 }

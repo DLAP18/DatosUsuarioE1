@@ -17,6 +17,16 @@
     <string name="valorRequerido">Información requerida</string>
     <string name="informacionNoValida">Información inválida</string>
     <string name="nombreCompleto">%s %s</string>
+    <string name="edad">Edad</string>
+    <string name="signoZ">Signo\nZodiacal</string>
+    <string name="horoscopoC">Horóscopo\nChino</string>
+    <string name="correoEP">Correo\nElectrónico</string>
+    <string name="noCuentaP">Número de\nCuenta</string>
+    <string name="Hecho">Hecho</string>
+    <string name="fechaN">%s/%s/%d</string>
+    <string name="diaC">0%s</string>
+    <string name="mesC">0%s</string>
+    <string name="edadR">%s años</string>
     <string-array name="carreras">
         <item>Selecciona una carrera...</item>
         <item>Ingeniería Aeroespacial</item>
